@@ -1,0 +1,3 @@
+outs:
+- md5: 38ea2c696763ecc42c45552181f24766
+  path: test.csv.gz
