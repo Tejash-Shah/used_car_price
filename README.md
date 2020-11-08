@@ -1,4 +1,4 @@
-# used_car_price
+# Used Car Price Model
 
 This repository contains the end-to-end implementation for predicting used car price in the USA. This project is in 
 active mode, so I keep experimenting ideas in notebook (in notebooks folder). I got the dataset from here on kaggle 
@@ -11,7 +11,7 @@ I have taken the data collected from the author and tried to implement it end-to
 
 These are the steps I have performed:
 
-1: Data Cleaning
+1. Data Cleaning
 2. Exploratory Data Analysis
 3. Feature Engineering
 4. Feature Selection
