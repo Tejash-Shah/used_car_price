@@ -1,7 +1,8 @@
-import pandas as pd
 import joblib
-from used_car_price.config import config
+import pandas as pd
 from sklearn.pipeline import Pipeline
+
+from used_car_price.config import config
 
 
 def load_dataset(file_name: str, **kwargs) -> pd.DataFrame:
