@@ -1,23 +1,18 @@
 import math
-import shap
+
 import pandas as pd
+import shap
+from matplotlib import pyplot as plt
 from sklearn.model_selection import cross_validate
-from feature_engine.outlier_removers import OutlierTrimmer
-from used_car_price import pipeline
-from used_car_price.config import config
-from used_car_price.processing import load_dataset, save_pipeline, remove_dirty_target, drop_duplicates_in_df
 from sklearn.pipeline import Pipeline
 from xgboost import plot_importance
-from matplotlib import pyplot as plt
-# import mlflow
-import numpy as np
-from mlflow import log_metric, log_param, log_artifacts
-from pprint import pprint
-import logging
+
+from used_car_price import pipeline
+from used_car_price.config import config
+from used_car_price.processing import load_dataset, remove_dirty_target, drop_duplicates_in_df
 
 
 def _cross_validate_pipeline(df: pd.DataFrame) -> None:
-
     scores = cross_validate(estimator=pipeline.used_car_price_pipeline,
                             X=df[config.FEATURES],
                             y=df[config.TARGET].values.ravel(),
@@ -52,7 +47,7 @@ def _train_model(df: pd.DataFrame) -> Pipeline:
 
 
 def main() -> None:
-    train = load_dataset(file_name=config.TRAIN_DATA_FILE, usecols=config.FEATURES+config.TARGET)
+    train = load_dataset(file_name=config.TRAIN_DATA_FILE, usecols=config.FEATURES + config.TARGET)
     train = drop_duplicates_in_df(df=train, subset=None)
     train = remove_dirty_target(df=train)
     train = drop_duplicates_in_df(df=train, subset=['vin'], keep='first')
