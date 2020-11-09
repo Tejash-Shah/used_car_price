@@ -1,7 +1,7 @@
 import math
 
 import pandas as pd
-import shap
+# import shap
 from matplotlib import pyplot as plt
 from sklearn.model_selection import cross_validate
 from sklearn.pipeline import Pipeline
@@ -21,10 +21,17 @@ def _cross_validate_pipeline(df: pd.DataFrame) -> None:
                             return_train_score=True,
                             return_estimator=False)
 
-    print(f"Train r2: {round(scores['train_r2'].mean() * 100, 1)}")
-    print(f"Valid r2: {round(scores['test_r2'].mean() * 100, 1)}")
-    print(f"Train MSE: {int(math.sqrt(-scores['train_neg_mean_squared_error'].mean() * 100))}")
-    print(f"Valid MSE: {int(math.sqrt(-scores['test_neg_mean_squared_error'].mean() * 100))}")
+    # print(f"Train r2: {round(scores['train_r2'].mean() * 100, 1)}")
+    # print(f"Valid r2: {round(scores['test_r2'].mean() * 100, 1)}")
+    # print(f"Train MSE: {int(math.sqrt(-scores['train_neg_mean_squared_error'].mean() * 100))}")
+    # print(f"Valid MSE: {int(math.sqrt(-scores['test_neg_mean_squared_error'].mean() * 100))}")
+
+    with open("metrics.txt", "w") as outfile:
+        outfile.write(f"Train r2: {round(scores['train_r2'].mean() * 100, 1)}")
+        outfile.write(f"Valid r2: {round(scores['test_r2'].mean() * 100, 1)}")
+        outfile.write(f"Train MSE: {int(math.sqrt(-scores['train_neg_mean_squared_error'].mean() * 100))}")
+        outfile.write(f"Valid MSE: {int(math.sqrt(-scores['test_neg_mean_squared_error'].mean() * 100))}")
+
 
 
 def feature_importance_xgboost(trained_pipeline: Pipeline):
@@ -33,13 +40,13 @@ def feature_importance_xgboost(trained_pipeline: Pipeline):
     plt.show()
 
 
-def shap_plot(trained_pipeline: Pipeline, df: pd.DataFrame):
-    explainer = shap.TreeExplainer(trained_pipeline[config.ESTIMATOR_NAME])
-    transformed_data = trained_pipeline.fit_transform(df[config.FEATURES])
-    print(transformed_data.shape)
-    shap_values = explainer.shap_values(transformed_data)
-    # summarize the effects of all the features
-    shap.summary_plot(shap_values, transformed_data)
+# def shap_plot(trained_pipeline: Pipeline, df: pd.DataFrame):
+#     explainer = shap.TreeExplainer(trained_pipeline[config.ESTIMATOR_NAME])
+#     transformed_data = trained_pipeline.fit_transform(df[config.FEATURES])
+#     print(transformed_data.shape)
+#     shap_values = explainer.shap_values(transformed_data)
+#     # summarize the effects of all the features
+#     shap.summary_plot(shap_values, transformed_data)
 
 
 def _train_model(df: pd.DataFrame) -> Pipeline:
