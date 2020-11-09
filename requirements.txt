@@ -79,7 +79,6 @@ mistune==0.8.4
 mkl-fft==1.2.0
 mkl-random==1.1.1
 mkl-service==2.3.0
-mlflow==1.11.0
 msrest==0.6.19
 nanotime==0.5.2
 nbclient==0.5.0
@@ -152,7 +151,7 @@ streamlit==0.70.0
 tabulate==0.8.7
 terminado==0.9.1
 testpath==0.4.4
-threadpoolctl 
+threadpoolctl
 toml==0.10.2
 toolz==0.11.1
 tornado==6.0.4
