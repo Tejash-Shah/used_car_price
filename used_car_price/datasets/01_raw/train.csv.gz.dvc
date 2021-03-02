@@ -1,0 +1,3 @@
+outs:
+- md5: 26c30b8888f38bebe11522bcd1446cf2
+  path: train.csv.gz
